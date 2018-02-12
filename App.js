@@ -12,4 +12,22 @@ const tone_analyzer = new ToneAnalyzerV3({
   version_date: '2018-02-12'
 });
 
+//GET REQUEST HANDLER TO ANALYZING TEST DATA
+app.get('/get', function(req, res){
+  console.log('GET request!');
+
+  var params = {
+    'tone_input': require('./data_test/tone.json'),
+    'content_type': 'application/json'
+  };
+
+  tone_analyzer.tone(params, function(error, response) {
+    if (error)
+      res.send("Error: " + error);
+    else
+      res.send(JSON.stringify(response, null, 2));
+    }
+  );
+});
+
 app.listen(3005);
