@@ -30,4 +30,22 @@ app.get('/get', function(req, res){
   );
 });
 
+//POST REQUEST HANDLER FOR ANALYZING USER INPUT DATA
+app.post('/post', function(req, res) {
+  console.log(req.body);
+
+  var params = {
+    'tone_input': req.body,
+    'content_type': 'application/json'
+  };
+
+  tone_analyzer.tone(params, function(error, response) {
+    if (error)
+      res.send(error);
+    else
+      res.send(JSON.stringify(response, null, 2));
+    }
+  );
+})
+
 app.listen(3005);
