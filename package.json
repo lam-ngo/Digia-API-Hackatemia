@@ -9,6 +9,7 @@
   "author": "Lam Ngo",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "watson-developer-cloud": "^3.0.6"
   }
 }
