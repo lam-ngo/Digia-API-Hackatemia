@@ -26,7 +26,7 @@ const getText = function(path, res){
     if (error)
       res.send(error);
     else
-      res.send(JSON.stringify(response, null, 2));
+      toneAnalyze({text: JSON.stringify(response.results[0].alternatives[0].transcript)}, res);
   });
 }
 
@@ -41,5 +41,37 @@ app.get('/get/tone/manwithgun', function(req, res){
   getText('data_test/manwithgun.flac', res);
 });
 
+
+
+//USE IBM WATSON TONE ANALYZER LIBRARY
+const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+
+const tone_analyzer = new ToneAnalyzerV3({
+  username: '47e7648f-3796-41da-93be-ff64fafa7b81',
+  password: 'muqL70UErLlZ',
+  version_date: '2018-02-12'
+});
+
+const toneAnalyze = function(json, res){
+  console.log('Analyzing tone');
+
+  var params = {
+    'tone_input': json,
+    'content_type': 'application/json'
+  };
+
+  tone_analyzer.tone(params, function(error, response) {
+    if (error)
+      res.send(error);
+    else
+      res.send(JSON.stringify(response, null, 2));
+    }
+  );
+};
+
+//USE MICROSOFT QA MAKER
+const QA = function(json, res){
+  
+}
 
 app.listen(3005);
