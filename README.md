@@ -1,5 +1,9 @@
-This is an API for tone analysis using IBM Watson open API.  
-The API is built using Node.js and Express.js.  
+This is an API for analyzing voice call based on keywords and tone.  
+It is built using:
+- IBM Watson open API: Speech to text and Tone analyzer.
+- Microsoft Q&A maker.    
+
+The technologies used are Node.js and Express.js.  
 
 ### For developer  
 Download or clone this repo to your local machine.  
